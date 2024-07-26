@@ -96,12 +96,14 @@ def print_table(ctx: click.Context, group_by: Literal["device", "test"] | None =
 def print_json(ctx: click.Context, output: pathlib.Path | None = None) -> None:
     """Print result in a json format."""
     results = _get_result_manager(ctx)
-    console.print()
-    console.print(Panel("JSON results", style="cyan"))
-    rich.print_json(results.json)
     if output is not None:
         with output.open(mode="w", encoding="utf-8") as fout:
             fout.write(results.json)
+        return
+
+    console.print()
+    console.print(Panel("JSON results", style="cyan"))
+    rich.print_json(results.json)
 
 
 def print_text(ctx: click.Context) -> None:
