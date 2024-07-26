@@ -99,7 +99,7 @@ class Device(httpx.AsyncClient):
 
         kwargs.setdefault("auth", self.auth)
 
-        super().__init__(**kwargs)
+        super().__init__(limits=httpx.Limits(max_connections=20), **kwargs)
         self.headers["Content-Type"] = "application/json-rpc"
 
     async def check_connection(self) -> bool:
