@@ -144,7 +144,7 @@ class VerifyRoutingTableEntry(AntaTest):
         """VRF context. Defaults to `default` VRF."""
         routes: list[IPv4Address]
         """List of routes to verify."""
-        collect: Literal["one", "all"] = "one"
+        collect: Literal["one", "all"] = "all"
         """Route collect behavior: one=one route per command, all=all routes in vrf per command. Defaults to `one`"""
 
     def render(self, template: AntaTemplate) -> list[AntaCommand]:
