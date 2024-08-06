@@ -98,6 +98,7 @@ class Device(httpx.AsyncClient):
             self.auth = httpx.BasicAuth(username, password)
 
         kwargs.setdefault("auth", self.auth)
+        kwargs["timeout"] = httpx.Timeout(timeout=kwargs.get("timeout", 5.0), pool=None)
 
         super().__init__(limits=httpx.Limits(max_connections=20), **kwargs)
         self.headers["Content-Type"] = "application/json-rpc"
